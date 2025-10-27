@@ -1,0 +1,158 @@
+/* ======== General Layout ======== */
+.resume-preview-container {
+  background-color: #f0f6ff;
+  min-height: 100vh;
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ======== Resume Card ======== */
+.resume {
+  background-color: #fff;
+  width: 800px;
+  min-height: 1050px;
+  padding: 40px 50px;
+  border-radius: 10px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+  color: #222;
+}
+
+/* ======== Header ======== */
+.resume-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #004aad;
+  padding-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+.profile-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 25px;
+  border: 3px solid #004aad;
+}
+
+.resume-header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: #004aad;
+}
+
+.contact-info {
+  margin: 3px 0;
+  color: #444;
+  font-size: 14px;
+}
+
+/* ======== Section Titles ======== */
+.resume-section h2 {
+  color: #004aad;
+  font-size: 20px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.resume-section hr {
+  border: 0;
+  border-top: 2px solid #004aad;
+  margin-bottom: 15px;
+}
+
+/* ======== Education ======== */
+.edu-item {
+  margin-bottom: 15px;
+}
+
+.edu-item h3 {
+  margin-bottom: 3px;
+  font-size: 17px;
+  color: #222;
+}
+
+/* ======== Skills ======== */
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  gap: 10px;
+  padding-left: 0;
+}
+
+.skills-list li {
+  background: #004aad;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+/* ======== Projects ======== */
+.project-item {
+  margin-bottom: 15px;
+}
+
+.project-item h3 {
+  font-size: 17px;
+  margin-bottom: 4px;
+  color: #222;
+}
+
+.tech-stack {
+  font-style: italic;
+  color: #555;
+}
+
+/* ======== Social Links ======== */
+.social-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.social-list li {
+  margin-bottom: 6px;
+  color: #004aad;
+  word-break: break-word;
+}
+
+/* ======== Download Button ======== */
+.download-btn {
+  margin-top: 25px;
+  padding: 12px 25px;
+  background-color: #004aad;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.download-btn:hover {
+  background-color: #00327a;
+}
+
+/* ======== Print Friendly ======== */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #resume,
+  #resume * {
+    visibility: visible;
+  }
+  #resume {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .download-btn {
+    display: none;
+  }
+}

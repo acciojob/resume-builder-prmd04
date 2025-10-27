@@ -1,0 +1,208 @@
+.skill-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 32px;
+  background-color: #f7f9fc;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.skill-container h2 {
+  color: #1e3a8a;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+
+/* --- Skill Input Form --- */
+.skill-form {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 30px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.skill-form input[type="text"] {
+  flex-grow: 1;
+  padding: 15px;
+  border: 2px solid #d1d5db;
+  border-radius: 10px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 1.125rem;
+}
+
+.skill-form input[type="text"]:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+#add_skill {
+  background-color: #10b981; /* Green for Add action */
+  color: #ffffff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: background-color 0.2s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+#add_skill:hover {
+  background-color: #059669;
+}
+
+#add_skill:active {
+  transform: scale(0.98);
+}
+
+/* --- Skill List --- */
+.skill-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 40px;
+}
+
+.skill-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  margin-bottom: 12px;
+  padding: 15px 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid #3b82f6;
+  transition: transform 0.2s;
+}
+
+.skill-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skill-item span {
+  font-size: 1.125rem;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+#delete_skill {
+  background-color: #ef4444; /* Red for Delete action */
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background-color 0.2s, transform 0.1s;
+  flex-shrink: 0;
+}
+
+#delete_skill:hover {
+  background-color: #dc2626;
+}
+
+#delete_skill:active {
+  transform: scale(0.95);
+}
+
+/* --- Navigation Buttons --- */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 30px;
+  border-top: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: 700px;
+}
+
+.navigation-buttons button {
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  border: none;
+  flex: 1;
+}
+
+.navigation-buttons button:active {
+  transform: scale(0.97);
+}
+
+.navigation-buttons button:first-child { /* Back button */
+  background-color: #d1d5db;
+  color: #1f2937;
+}
+
+.navigation-buttons button:first-child:hover {
+  background-color: #9ca3af;
+}
+
+.navigation-buttons button:last-child { /* Next button */
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.navigation-buttons button:last-child:hover {
+  background-color: #2563eb;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .skill-container {
+    padding: 24px 16px;
+  }
+
+  .skill-form {
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .skill-form input[type="text"], #add_skill {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .skill-item {
+    padding: 12px 15px;
+  }
+
+  .skill-item span {
+    max-width: 70%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  #delete_skill {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .navigation-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

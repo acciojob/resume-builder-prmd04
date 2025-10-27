@@ -1,0 +1,203 @@
+.education-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 32px;
+  background-color: #f7f9fc;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.education-container h2 {
+  color: #1e3a8a;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.education-box {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 30px;
+  border-left: 8px solid #3b82f6;
+  position: relative;
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 40px;
+  margin-bottom: 20px;
+}
+
+.education-box .input-row > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.education-box label {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+  font-size: 1.125rem;
+  display: block;
+}
+
+.education-box input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  margin-top: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  font-size: 1.125rem;
+}
+
+.education-box input[type="text"]:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4);
+  outline: none;
+}
+
+.delete-btn {
+  /* Removed absolute positioning (top/right) */
+  background-color: #ef4444;
+  color: #ffffff;
+  border: none;
+  /* Increased size */
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: background-color 0.2s, transform 0.1s;
+  
+  /* New flow and side-by-side alignment */
+  display: block;
+  width: fit-content;
+  margin-top: 20px;
+  margin-left: auto; /* Pushes button to the right */
+  margin-right: 0;
+}
+
+.delete-btn:hover {
+  background-color: #dc2626;
+}
+
+.delete-btn:active {
+  transform: scale(0.95);
+}
+
+.add-btn {
+  background-color: #10b981;
+  color: #ffffff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  max-width: 900px;
+  width: 100%;
+}
+
+.add-btn:hover {
+  background-color: #059669;
+}
+
+.add-btn:active {
+  transform: scale(0.98);
+}
+
+.edu-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  padding-top: 30px;
+  border-top: 1px solid #e5e7eb;
+  width: 100%;
+  max-width: 900px;
+}
+
+.edu-buttons button {
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+  border: none;
+}
+
+.edu-buttons button:active {
+  transform: scale(0.97);
+}
+
+#back {
+  background-color: #d1d5db;
+  color: #1f2937;
+}
+
+#back:hover {
+  background-color: #9ca3af;
+}
+
+#next, #save_continue {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+#next:hover, #save_continue:hover {
+  background-color: #2563eb;
+}
+
+#next:focus, #save_continue:focus {
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.4);
+  outline: none;
+}
+
+
+@media (max-width: 768px) {
+  .education-container {
+    padding: 24px 16px;
+  }
+
+  .education-box {
+   
+    padding: 30px 20px; 
+    margin-bottom: 20px;
+    border-left-width: 4px;
+  }
+
+  .education-container h2 {
+    font-size: 2rem;
+    margin-bottom: 24px;
+  }
+
+  .input-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .delete-btn {
+   
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .edu-buttons {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+}

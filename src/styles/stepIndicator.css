@@ -1,0 +1,113 @@
+.step-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: full;
+}
+
+.step-wrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* Prevents steps from shrinking on overflow */
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  color: #6b7280;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  border: 3px solid #d1d5db;
+}
+
+.step-circle.active {
+  background-color: #3b82f6;
+  color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.2);
+}
+
+.step-label {
+  margin-left: 15px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #6b7280;
+  transition: color 0.3s;
+  text-align: left;
+  line-height: 1.2;
+}
+
+.step-label.highlight {
+  color: #1e3a8a;
+  font-weight: 700;
+}
+
+.step-line {
+  height: 3px;
+  width: 80px;
+  background-color: #e5e7eb;
+  margin: 0 15px;
+}
+
+.step-circle.active + .step-line {
+  background-color: #3b82f6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .step-indicator {
+    padding: 15px 10px;
+    justify-content: flex-start;
+  }
+  
+  .step-circle {
+    width: 30px;
+    height: 30px;
+    font-size: 0.9rem;
+  }
+  
+  .step-label {
+   
+    display: none;
+  }
+  
+  /* Show only the label of the active step for better focus on mobile */
+  .step-label.highlight {
+    display: block;
+    position: absolute;
+    top: -30px; /* Adjust based on desired placement above the indicator */
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.9rem;
+    color: #1e3a8a;
+    font-weight: 700;
+  }
+  
+  .step-wrapper {
+    position: relative;
+  }
+  
+  .step-line {
+    width: 30px;
+    margin: 0 10px;
+  }
+}
+
+@media (max-width: 480px) {
+    .step-indicator {
+        margin-bottom: 30px;
+    }
+}
