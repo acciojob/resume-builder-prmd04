@@ -176,6 +176,27 @@
 #submit_resume:hover {
   background-color: #059669;
 }
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 8px;
+  text-align: left;
+}
+
+.final-submit-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.final-submit-btn:hover {
+  background-color: #125aa2;
+}
+
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {

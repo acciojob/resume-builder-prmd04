@@ -1,43 +1,67 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSkills, nextStep, prevStep } from "../feature/ResumeSlice"
+import { updateSkills, nextStep, prevStep } from "../feature/ResumeSlice";
 import StepIndicator from "../component/StepIndicator";
+import NavigationButtons from "./NavigationButtons";
 import "../../styles/skill.css";
 
 const SkillsStep = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { skills } = useSelector((state) => state.resume);
-  const [skill, setSkill] = useState("");
 
+  const [skill, setSkill] = useState("");
+  const [error, setError] = useState(""); // 🧠 track validation message
+
+  // ✅ Add skill with validation
   const handleAddSkill = () => {
-    if (skill.trim() === "") return;
-    const updatedSkills = [...skills, skill];
-    dispatch(updateSkills(updatedSkills)); 
+    if (skill.trim() === "") {
+      setError("Skill cannot be empty.");
+      return;
+    }
+
+    if (skills.includes(skill.trim())) {
+      setError("This skill is already added.");
+      return;
+    }
+
+    const updatedSkills = [...skills, skill.trim()];
+    dispatch(updateSkills(updatedSkills));
     setSkill("");
+    setError("");
   };
 
+  // ✅ Delete a skill
   const handleDeleteSkill = (index) => {
     const updatedSkills = skills.filter((_, i) => i !== index);
-    dispatch(updateSkills(updatedSkills)); 
+    dispatch(updateSkills(updatedSkills));
+  };
+
+  
+  const validateBeforeNext = () => {
+    if (skills.length === 0) {
+      setError("Please add at least one skill before continuing.");
+      return false;
+    }
+    setError("");
+    return true;
   };
 
   const handleSave = () => {
-    dispatch(updateSkills(skills)); 
-    console.log("Skills saved:", skills);
-    navigate('/mini-project')
+    if (!validateBeforeNext()) return;
+    dispatch(updateSkills(skills));
     dispatch(nextStep());
+    navigate("/mini-project");
   };
 
   const handleNext = () => {
-    navigate('/mini-project')
+    navigate("/mini-project");
     dispatch(nextStep());
   };
 
-  const handlePrev = () => {
-    navigate(-1);
+  const handleBack = () => {
+    navigate("/education");
     dispatch(prevStep());
   };
 
@@ -60,6 +84,8 @@ const SkillsStep = () => {
         </button>
       </div>
 
+      {error && <p className="error">{error}</p>}
+
       <ul className="skill-list">
         {skills.map((s, index) => (
           <li key={index} className="skill-item">
@@ -71,11 +97,11 @@ const SkillsStep = () => {
         ))}
       </ul>
 
-      <div className="navigation-buttons">
-        <button onClick={handlePrev}>Back</button>
-        <button onClick={handleNext}>Next</button>
-        <button onClick={handleSave}>Save & Continue</button>
-      </div>
+      <NavigationButtons
+        handleBack={handleBack}
+        handleSave={handleSave}
+        handleNext={handleNext}
+      />
     </div>
   );
 };

@@ -3,24 +3,31 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   updateSocialLinks,
+  nextStep,
   prevStep,
-  resetForm,
 } from "../feature/ResumeSlice";
 import StepIndicator from "../component/StepIndicator";
+import NavigationButtons from "./NavigationButtons";
 import "../../styles/socialLInk.css";
 
 const SocialLinksStep = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-
   const { socialLinks } = useSelector((state) => state.resume);
   const [social, setSocial] = useState("");
+  const [error, setError] = useState("");
 
   const handleAddSocial = () => {
-    if (!social.trim()) return;
-    dispatch(updateSocialLinks([...socialLinks, social]));
+    if (!social.trim()) {
+      setError("Please enter a social link before adding.");
+      return;
+    }
+
+    const updated = [...socialLinks, social.trim()];
+    dispatch(updateSocialLinks(updated));
     setSocial("");
+    setError("");
   };
 
   const handleDelete = (index) => {
@@ -29,16 +36,30 @@ const SocialLinksStep = () => {
   };
 
   const handleBack = () => {
-    navigate(-1);
+    navigate('mini-project');
     dispatch(prevStep());
   };
 
+  const handleNext = () => {
+    dispatch(nextStep());
+    navigate("/resume-preview");
+  };
+
   const handleSave = () => {
+    if (socialLinks.length === 0) {
+      setError("Please add at least one social link before saving.");
+      return;
+    }
     dispatch(updateSocialLinks(socialLinks));
+    setError("");
   };
 
   const handleSubmit = () => {
-    handleSave();
+    if (socialLinks.length === 0) {
+      setError("Please add at least one social link before submitting.");
+      return;
+    }
+    dispatch(updateSocialLinks(socialLinks));
     alert("🎉 Resume Created Successfully!");
     navigate("/preview-resume");
   };
@@ -47,12 +68,12 @@ const SocialLinksStep = () => {
     <div className="social-container">
       <StepIndicator />
 
-      <h2>Add social links like linkedin , github etc</h2>
+      <h2>Add your Social Links (e.g., LinkedIn, GitHub, Portfolio)</h2>
 
       <div className="social-form">
         <input
           type="text"
-          name="Social"
+          name="social"
           placeholder="Enter social link (e.g., GitHub, LinkedIn)"
           value={social}
           onChange={(e) => setSocial(e.target.value)}
@@ -62,10 +83,14 @@ const SocialLinksStep = () => {
         </button>
       </div>
 
+      {error && <p className="error">{error}</p>}
+
       <ul className="social-list">
         {socialLinks.map((link, index) => (
           <li key={index} className="social-item">
-            {link}
+            <a href={link} target="_blank" rel="noreferrer">
+              {link}
+            </a>
             <button id="delete" onClick={() => handleDelete(index)}>
               Delete
             </button>
@@ -73,17 +98,19 @@ const SocialLinksStep = () => {
         ))}
       </ul>
 
-      <div className="navigation-buttons">
-        <button id="back" onClick={handleBack}>
-          Back
-        </button>
-        <button id="save_continue" onClick={handleSave}>
-          Save & Continue
-        </button>
-        <button id="submit_resume" onClick={handleSubmit}>
-          Submit Resume
-        </button>
-      </div>
+      <NavigationButtons
+        handleBack={handleBack}
+        handleSave={handleSave}
+        handleNext={handleNext}
+      />
+
+      <button
+        id="submit_resume"
+        onClick={handleSubmit}
+        className="final-submit-btn"
+      >
+        Submit Resume
+      </button>
     </div>
   );
 };

@@ -223,6 +223,13 @@
   .project-item {
     padding: 20px;
   }
+  .error {
+  color: red;
+  font-size: 0.9rem;
+  margin-left: 5px;
+  display: block;
+}
+
 
   .project-item strong {
     font-size: 1.3rem;

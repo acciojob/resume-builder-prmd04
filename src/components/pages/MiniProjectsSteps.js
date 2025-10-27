@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import {
   updateMiniProjects,
   nextStep,
-  prevStep,} from '../feature/ResumeSlice'
+  prevStep,
+} from "../feature/ResumeSlice";
 import StepIndicator from "../component/StepIndicator";
 import "../../styles/miniProject.css";
+import NavigationButtons from "./NavigationButtons";
 
 const MiniProjectStep = () => {
   const dispatch = useDispatch();
@@ -20,16 +22,37 @@ const MiniProjectStep = () => {
     techStack: "",
   });
 
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProject((prev) => ({ ...prev, [name]: value }));
   };
 
+  const validateProject = () => {
+    if (!project.projectName.trim()) {
+      setError("Project name is required.");
+      return false;
+    }
+    if (!project.description.trim()) {
+      setError("Project description is required.");
+      return false;
+    }
+    if (!project.techStack.trim()) {
+      setError("Tech stack is required.");
+      return false;
+    }
+    setError("");
+    return true;
+  };
+
   const handleAddProject = () => {
-    if (!project.projectName.trim() || !project.description.trim()) return;
+    if (!validateProject()) return;
+
     const updatedProjects = [...miniProjects, project];
     dispatch(updateMiniProjects(updatedProjects));
     setProject({ projectName: "", description: "", techStack: "" });
+    setError("");
   };
 
   const handleDeleteProject = (index) => {
@@ -38,19 +61,24 @@ const MiniProjectStep = () => {
   };
 
   const handleSave = () => {
+    if (miniProjects.length === 0) {
+      setError("Please add at least one mini project before saving.");
+      return;
+    }
     dispatch(updateMiniProjects(miniProjects));
     console.log("Projects saved:", miniProjects);
-    navigate('/social-link')
+    navigate("/social-link");
     dispatch(nextStep());
   };
 
   const handleNext = () => {
-    navigate('/social-link')
+    navigate("/social-link");
     dispatch(nextStep());
   };
 
-  const handlePrev = () => {
-    navigate(-1);
+  const handleBack = () => {
+    console.log('back is cliked');
+    navigate("/skill");
     dispatch(prevStep());
   };
 
@@ -84,6 +112,8 @@ const MiniProjectStep = () => {
           onChange={handleChange}
         ></textarea>
 
+        {error && <p className="error">{error}</p>}
+
         <button id="add_project" onClick={handleAddProject}>
           Add Project
         </button>
@@ -102,17 +132,11 @@ const MiniProjectStep = () => {
         ))}
       </ul>
 
-      <div className="navigation-buttons">
-        <button id="back" onClick={handlePrev}>
-          Back
-        </button>
-        <button id="next" onClick={handleNext}>
-          Next
-        </button>
-        <button id="save_continue" onClick={handleSave}>
-          Save & Continue
-        </button>
-      </div>
+      <NavigationButtons
+        handleBack={handleBack}
+        handleSave={handleSave}
+        handleNext={handleNext}
+      />
     </div>
   );
 };

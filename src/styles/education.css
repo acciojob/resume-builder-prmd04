@@ -141,6 +141,13 @@
 .edu-buttons button:active {
   transform: scale(0.97);
 }
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-left: 5px;
+  display: block;
+}
+
 
 #back {
   background-color: #d1d5db;

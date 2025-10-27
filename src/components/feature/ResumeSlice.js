@@ -8,7 +8,7 @@ const initialState = {
     lname: "",
     address: "",
     phone: "",
-    photo: "",
+    url: "",
   },
   education: [],
   skills: [],
