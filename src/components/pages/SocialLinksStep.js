@@ -7,7 +7,7 @@ import {
   resetForm,
 } from "../feature/ResumeSlice";
 import StepIndicator from "../component/StepIndicator";
-import "../../styles/socialLink.css";
+import "../../styles/socialLInk.css";
 
 const SocialLinksStep = () => {
   const dispatch = useDispatch();
