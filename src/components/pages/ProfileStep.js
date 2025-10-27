@@ -51,7 +51,7 @@ const ProfileStep = () => {
     <>
     <StepIndicator/>
     <div className="profile-container">
-      <h2>Add your Profile Details</h2>
+      <h2>Add your profile details</h2>
       <form className="profile-form">
         <label>
           First Name:

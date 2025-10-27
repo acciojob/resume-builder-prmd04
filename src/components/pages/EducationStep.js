@@ -57,7 +57,7 @@ const EducationStep = () => {
     <div className="education-container">
       <StepIndicator currentStep={2} />
 
-      <h2>Add Education Details</h2>
+      <h2>Add your Education Details</h2>
 
       {educationList.map((edu, index) => (
         <div key={index} className="education-box">

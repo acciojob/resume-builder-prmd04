@@ -47,7 +47,7 @@ const SocialLinksStep = () => {
     <div className="social-container">
       <StepIndicator />
 
-      <h2>Social Links</h2>
+      <h2>Add social links like linkedin , github etc</h2>
 
       <div className="social-form">
         <input

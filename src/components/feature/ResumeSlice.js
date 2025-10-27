@@ -4,8 +4,8 @@ import { createSlice} from "@reduxjs/toolkit";
 const initialState = {
   currentStep: 1,
   profile: {
-    firstName: "",
-    lastName: "",
+    fname: "",
+    lname: "",
     address: "",
     phone: "",
     photo: "",

@@ -58,7 +58,7 @@ const MiniProjectStep = () => {
     <div className="project-container">
       <StepIndicator />
 
-      <h2>Mini Project Section</h2>
+      <h2>Add your Mini Projects</h2>
 
       <div className="project-form">
         <input

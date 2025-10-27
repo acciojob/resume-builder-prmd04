@@ -45,7 +45,7 @@ const SkillsStep = () => {
     <div className="skill-container">
       <StepIndicator />
 
-      <h2>Skill Section</h2>
+      <h2>Add your Skills</h2>
 
       <div className="skill-form">
         <input
