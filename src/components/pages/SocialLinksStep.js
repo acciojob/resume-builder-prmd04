@@ -13,7 +13,7 @@ import "../../styles/socialLInk.css";
 const SocialLinksStep = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const profile = useSelector((state)=> state.resume);
   const { socialLinks } = useSelector((state) => state.resume);
   const [social, setSocial] = useState("");
   const [error, setError] = useState("");
@@ -62,6 +62,7 @@ const SocialLinksStep = () => {
     dispatch(updateSocialLinks(socialLinks));
     alert("🎉 Resume Created Successfully!");
     navigate("/preview-resume");
+    console.log(profile);
   };
 
   return (

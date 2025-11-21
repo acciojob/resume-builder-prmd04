@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import "../../styles/resumePreview.css"
+import "../../styles/resumePreview.css";
 
 const ResumePreview = () => {
   const { profile, education, skills, miniProjects, socialLinks } = useSelector(
@@ -11,28 +11,52 @@ const ResumePreview = () => {
 
   const handleDownload = () => {
     const resumeElement = document.getElementById("resume");
-    
+
     html2canvas(resumeElement, { scale: 2 }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const width = pdf.internal.pageSize.getWidth();
-      const height = (canvas.height * width) / canvas.width;
-      pdf.addImage(imgData, "PNG", 0, 0, width, height);
-      pdf.save(`${profile.firstName || "My"}_Resume.pdf`);
-    });
+  const imgData = canvas.toDataURL("image/png");
+  const pdf = new jsPDF("p", "mm", "a4");
+
+  const pageWidth = pdf.internal.pageSize.getWidth();
+  const pageHeight = pdf.internal.pageSize.getHeight();
+
+  const canvasWidth = canvas.width;
+  const canvasHeight = canvas.height;
+
+  const imgHeight = (canvasHeight * pageWidth) / canvasWidth;
+
+  let heightLeft = imgHeight;
+  let position = 0;
+
+  // First page
+  pdf.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+  heightLeft -= pageHeight;
+
+  // Additional pages
+  while (heightLeft > 0) {
+    position = heightLeft - imgHeight;
+    pdf.addPage();
+    pdf.addImage(imgData, "PNG", 0, position, pageWidth, imgHeight);
+    heightLeft -= pageHeight;
+  }
+
+  pdf.save(`${profile.fname || "My"}_Resume.pdf`);
+});
+
   };
 
   return (
     <div className="resume-preview-container">
       <div id="resume" className="resume">
         <header className="resume-header">
-          {profile.photo && <img src={profile.photo} alt="Profile" className="profile-photo" />}
+          {profile.url && (
+            <img src={profile.url} alt="Profile" className="profile-photo" />
+          )}
           <div>
             <h1>
-              {profile.firstName} {profile.lastName}
+              {profile.fname || "First"} {profile.lname || "Last"}
             </h1>
-            <p className="contact-info">{profile.address}</p>
-            <p className="contact-info">📞 {profile.phone}</p>
+            <p className="contact-info">{profile.address || "Your Address"}</p>
+            <p className="contact-info">📞 {profile.phone || "Your Phone"}</p>
           </div>
         </header>
 
